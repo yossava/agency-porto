@@ -101,7 +101,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
                 ${project.size === 'small' ? 'lg:col-span-2 lg:row-span-1' : ''}
               `}
             >
-              <Link href={`/${locale}/work`}>
+              <Link href={`/${locale}/work/${project.id}`}>
                 <div className="group relative glass rounded-3xl overflow-hidden h-full min-h-[300px] transition-all duration-500 hover:border-white/30">
                   {/* Gradient Background */}
                   <div

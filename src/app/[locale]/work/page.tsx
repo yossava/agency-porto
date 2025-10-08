@@ -74,63 +74,61 @@ export default function WorkPage({ params: { locale } }: WorkPageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group glass rounded-3xl overflow-hidden hover:border-white/30 transition-all duration-500"
             >
-              {/* Project Image Placeholder */}
-              <div
-                className={`relative h-64 bg-gradient-to-br ${project.gradient} overflow-hidden`}
+              <Link
+                href={`/${locale}/work/${project.id}`}
+                className="block group glass rounded-3xl overflow-hidden hover:border-white/30 transition-all duration-500"
               >
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-white/20 text-8xl font-bold">
-                    {project.title[currentLocale].charAt(0)}
+                {/* Project Image Placeholder */}
+                <div
+                  className={`relative h-64 bg-gradient-to-br ${project.gradient} overflow-hidden`}
+                >
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-white/20 text-8xl font-bold">
+                      {project.title[currentLocale].charAt(0)}
+                    </div>
+                  </div>
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {project.github && (
+                      <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300">
+                        <Github className="w-6 h-6 text-white" />
+                      </div>
+                    )}
+                    {project.demo && (
+                      <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300">
+                        <ExternalLink className="w-6 h-6 text-white" />
+                      </div>
+                    )}
                   </div>
                 </div>
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
-                  >
-                    <Github className="w-6 h-6 text-white" />
-                  </a>
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
-                  >
-                    <ExternalLink className="w-6 h-6 text-white" />
-                  </a>
-                </div>
-              </div>
 
-              {/* Project Info */}
-              <div className="p-8">
-                <div className="text-sm text-blue-400 mb-2">
-                  {project.category[currentLocale]}
-                </div>
-                <h3 className="text-2xl font-bold mb-3 group-hover:gradient-text transition-all duration-300">
-                  {project.title[currentLocale]}
-                </h3>
-                <p className="text-gray-400 mb-6 leading-relaxed text-sm">
-                  {project.description[currentLocale]}
-                </p>
+                {/* Project Info */}
+                <div className="p-8">
+                  <div className="text-sm text-blue-400 mb-2">
+                    {project.category[currentLocale]}
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 group-hover:gradient-text transition-all duration-300">
+                    {project.title[currentLocale]}
+                  </h3>
+                  <p className="text-gray-400 mb-6 leading-relaxed text-sm">
+                    {project.description[currentLocale]}
+                  </p>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-gray-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-gray-300"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>

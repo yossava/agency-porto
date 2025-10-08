@@ -8,8 +8,8 @@ export default createMiddleware({
   // Used when no locale matches
   defaultLocale,
 
-  // Always use locale prefix (e.g., /en/about instead of /about)
-  localePrefix: 'always'
+  // Only show /en in URL, hide /id (since ID is default)
+  localePrefix: 'as-needed'
 });
 
 export const config = {

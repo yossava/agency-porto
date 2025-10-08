@@ -4,11 +4,11 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // Removed 'output: export' to enable SSR and API routes
   images: {
-    unoptimized: true,
+    unoptimized: true, // Can be removed if using Next.js Image Optimization
   },
-  trailingSlash: true,
+  // trailingSlash: true, // Removed for SSR, can add back if needed
 };
 
 export default withNextIntl(nextConfig);

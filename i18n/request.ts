@@ -1,8 +1,8 @@
 import { getRequestConfig } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-export const locales = ['en', 'id'] as const;
-export const defaultLocale = 'en' as const;
+export const locales = ['id', 'en'] as const; // ID first (primary language)
+export const defaultLocale = 'id' as const;    // Indonesian as default
 
 export type Locale = (typeof locales)[number];
 
