@@ -1,15 +1,19 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react';
+import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { getAllBlogPosts, formatDate } from '@/lib/content';
 
 interface BlogPageProps {
   params: { locale: string };
 }
 
 export default function BlogPage({ params: { locale } }: BlogPageProps) {
-  const posts = [
+  const posts = getAllBlogPosts();
+  const currentLocale = locale as 'en' | 'id';
+
+  const postsOld = [
     {
       slug: 'modern-web-development-trends-2024',
       title:
@@ -178,13 +182,13 @@ export default function BlogPage({ params: { locale } }: BlogPageProps) {
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-white/20 text-8xl font-bold">
-                    {post.title.charAt(0)}
+                    {post.title[currentLocale].charAt(0)}
                   </div>
                 </div>
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 rounded-full glass text-xs font-medium text-white border border-white/20">
-                    {post.category}
+                    {post.category[currentLocale]}
                   </span>
                 </div>
               </div>
@@ -195,22 +199,22 @@ export default function BlogPage({ params: { locale } }: BlogPageProps) {
                 <div className="flex items-center gap-4 text-sm text-gray-400 mb-3">
                   <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
-                    {post.date}
+                    {formatDate(post.date, currentLocale)}
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="w-4 h-4" />
-                    {post.readTime}
+                    {post.readTime} {locale === 'en' ? 'min read' : 'menit baca'}
                   </div>
                 </div>
 
                 {/* Title */}
                 <h3 className="text-xl font-bold mb-3 group-hover:gradient-text transition-all duration-300">
-                  {post.title}
+                  {post.title[currentLocale]}
                 </h3>
 
                 {/* Excerpt */}
                 <p className="text-gray-400 mb-4 leading-relaxed text-sm line-clamp-3">
-                  {post.excerpt}
+                  {post.excerpt[currentLocale]}
                 </p>
 
                 {/* Read More Link */}

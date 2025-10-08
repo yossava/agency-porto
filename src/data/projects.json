@@ -1,0 +1,128 @@
+[
+  {
+    "id": "ecommerce-platform",
+    "title": {
+      "en": "E-Commerce Platform",
+      "id": "Platform E-Commerce"
+    },
+    "category": {
+      "en": "Web Development",
+      "id": "Pengembangan Web"
+    },
+    "description": {
+      "en": "A modern e-commerce platform with real-time inventory, payment processing, and analytics dashboard",
+      "id": "Platform e-commerce modern dengan inventori real-time, pemrosesan pembayaran, dan dashboard analitik"
+    },
+    "tags": ["Next.js", "Stripe", "PostgreSQL", "Tailwind"],
+    "gradient": "from-blue-500 to-cyan-500",
+    "github": "https://github.com/yourusername/ecommerce",
+    "demo": "https://demo.example.com",
+    "featured": true,
+    "date": "2024-12-01"
+  },
+  {
+    "id": "ai-content-generator",
+    "title": {
+      "en": "AI Content Generator",
+      "id": "Generator Konten AI"
+    },
+    "category": {
+      "en": "AI & Machine Learning",
+      "id": "AI & Machine Learning"
+    },
+    "description": {
+      "en": "AI-powered content generation tool using GPT-4 for marketing copy, blog posts, and social media",
+      "id": "Tool generasi konten berbasis AI menggunakan GPT-4 untuk copy marketing, blog, dan media sosial"
+    },
+    "tags": ["React", "OpenAI", "Node.js", "MongoDB"],
+    "gradient": "from-purple-500 to-pink-500",
+    "github": "https://github.com/yourusername/ai-content",
+    "demo": "https://demo.example.com",
+    "featured": true,
+    "date": "2024-11-15"
+  },
+  {
+    "id": "fitness-tracker",
+    "title": {
+      "en": "Fitness Tracking App",
+      "id": "Aplikasi Tracking Fitness"
+    },
+    "category": {
+      "en": "Mobile Development",
+      "id": "Pengembangan Mobile"
+    },
+    "description": {
+      "en": "Cross-platform mobile app for workout tracking, nutrition planning, and progress analytics",
+      "id": "Aplikasi mobile cross-platform untuk tracking workout, perencanaan nutrisi, dan analitik progres"
+    },
+    "tags": ["React Native", "Firebase", "TypeScript", "Chart.js"],
+    "gradient": "from-orange-500 to-red-500",
+    "github": "https://github.com/yourusername/fitness",
+    "demo": "https://demo.example.com",
+    "featured": false,
+    "date": "2024-11-01"
+  },
+  {
+    "id": "realestate-dashboard",
+    "title": {
+      "en": "Real Estate Dashboard",
+      "id": "Dashboard Real Estate"
+    },
+    "category": {
+      "en": "Web Development",
+      "id": "Pengembangan Web"
+    },
+    "description": {
+      "en": "Property management dashboard with listing management, tenant tracking, and financial reporting",
+      "id": "Dashboard manajemen properti dengan manajemen listing, tracking penyewa, dan laporan keuangan"
+    },
+    "tags": ["Vue.js", "Express", "MySQL", "Chart.js"],
+    "gradient": "from-green-500 to-emerald-500",
+    "github": "https://github.com/yourusername/realestate",
+    "demo": "https://demo.example.com",
+    "featured": false,
+    "date": "2024-10-20"
+  },
+  {
+    "id": "social-analytics",
+    "title": {
+      "en": "Social Media Analytics",
+      "id": "Analitik Media Sosial"
+    },
+    "category": {
+      "en": "Data & Analytics",
+      "id": "Data & Analitik"
+    },
+    "description": {
+      "en": "Comprehensive analytics platform for tracking social media performance across multiple platforms",
+      "id": "Platform analitik komprehensif untuk tracking performa media sosial di berbagai platform"
+    },
+    "tags": ["Next.js", "D3.js", "Python", "Redis"],
+    "gradient": "from-indigo-500 to-purple-500",
+    "github": "https://github.com/yourusername/analytics",
+    "demo": "https://demo.example.com",
+    "featured": true,
+    "date": "2024-10-01"
+  },
+  {
+    "id": "video-streaming",
+    "title": {
+      "en": "Video Streaming Platform",
+      "id": "Platform Streaming Video"
+    },
+    "category": {
+      "en": "Web Development",
+      "id": "Pengembangan Web"
+    },
+    "description": {
+      "en": "Netflix-style streaming platform with adaptive bitrate, user profiles, and recommendation engine",
+      "id": "Platform streaming bergaya Netflix dengan adaptive bitrate, profil pengguna, dan mesin rekomendasi"
+    },
+    "tags": ["React", "AWS", "FFmpeg", "GraphQL"],
+    "gradient": "from-pink-500 to-rose-500",
+    "github": "https://github.com/yourusername/streaming",
+    "demo": "https://demo.example.com",
+    "featured": false,
+    "date": "2024-09-15"
+  }
+]

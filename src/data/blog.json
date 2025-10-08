@@ -1,0 +1,152 @@
+[
+  {
+    "slug": "modern-web-development-trends-2024",
+    "title": {
+      "en": "Modern Web Development Trends in 2024",
+      "id": "Tren Pengembangan Web Modern di 2024"
+    },
+    "excerpt": {
+      "en": "Explore the latest trends shaping the future of web development, from AI integration to serverless architectures.",
+      "id": "Jelajahi tren terbaru yang membentuk masa depan pengembangan web, dari integrasi AI hingga arsitektur serverless."
+    },
+    "content": {
+      "en": "Full article content in English...",
+      "id": "Konten artikel lengkap dalam Bahasa Indonesia..."
+    },
+    "date": "2024-12-15",
+    "readTime": 5,
+    "category": {
+      "en": "Development",
+      "id": "Pengembangan"
+    },
+    "tags": ["Web Development", "Trends", "AI"],
+    "gradient": "from-blue-500 to-cyan-500",
+    "author": "Your Name",
+    "published": true
+  },
+  {
+    "slug": "ui-ux-best-practices",
+    "title": {
+      "en": "UI/UX Best Practices for 2024",
+      "id": "Praktik Terbaik UI/UX untuk 2024"
+    },
+    "excerpt": {
+      "en": "Learn how to create intuitive and beautiful user interfaces that users love to interact with.",
+      "id": "Pelajari cara membuat antarmuka pengguna yang intuitif dan indah yang disukai pengguna."
+    },
+    "content": {
+      "en": "Full article content in English...",
+      "id": "Konten artikel lengkap dalam Bahasa Indonesia..."
+    },
+    "date": "2024-12-10",
+    "readTime": 7,
+    "category": {
+      "en": "Design",
+      "id": "Desain"
+    },
+    "tags": ["UI/UX", "Design", "Best Practices"],
+    "gradient": "from-purple-500 to-pink-500",
+    "author": "Your Name",
+    "published": true
+  },
+  {
+    "slug": "nextjs-performance-optimization",
+    "title": {
+      "en": "Next.js Performance Optimization Guide",
+      "id": "Panduan Optimasi Performa Next.js"
+    },
+    "excerpt": {
+      "en": "Deep dive into Next.js performance optimization techniques to make your applications blazingly fast.",
+      "id": "Pelajari teknik optimasi performa Next.js untuk membuat aplikasi Anda super cepat."
+    },
+    "content": {
+      "en": "Full article content in English...",
+      "id": "Konten artikel lengkap dalam Bahasa Indonesia..."
+    },
+    "date": "2024-12-05",
+    "readTime": 10,
+    "category": {
+      "en": "Performance",
+      "id": "Performa"
+    },
+    "tags": ["Next.js", "Performance", "Optimization"],
+    "gradient": "from-orange-500 to-red-500",
+    "author": "Your Name",
+    "published": true
+  },
+  {
+    "slug": "building-with-react-server-components",
+    "title": {
+      "en": "Building with React Server Components",
+      "id": "Membangun dengan React Server Components"
+    },
+    "excerpt": {
+      "en": "Understand the power of React Server Components and how they change the way we build React applications.",
+      "id": "Pahami kekuatan React Server Components dan bagaimana mereka mengubah cara kita membangun aplikasi React."
+    },
+    "content": {
+      "en": "Full article content in English...",
+      "id": "Konten artikel lengkap dalam Bahasa Indonesia..."
+    },
+    "date": "2024-11-28",
+    "readTime": 8,
+    "category": {
+      "en": "React",
+      "id": "React"
+    },
+    "tags": ["React", "Server Components", "RSC"],
+    "gradient": "from-green-500 to-emerald-500",
+    "author": "Your Name",
+    "published": true
+  },
+  {
+    "slug": "typescript-advanced-patterns",
+    "title": {
+      "en": "Advanced TypeScript Patterns",
+      "id": "Pola TypeScript Tingkat Lanjut"
+    },
+    "excerpt": {
+      "en": "Master advanced TypeScript patterns and techniques to write more maintainable and type-safe code.",
+      "id": "Kuasai pola dan teknik TypeScript tingkat lanjut untuk menulis kode yang lebih maintainable dan type-safe."
+    },
+    "content": {
+      "en": "Full article content in English...",
+      "id": "Konten artikel lengkap dalam Bahasa Indonesia..."
+    },
+    "date": "2024-11-20",
+    "readTime": 12,
+    "category": {
+      "en": "TypeScript",
+      "id": "TypeScript"
+    },
+    "tags": ["TypeScript", "Patterns", "Advanced"],
+    "gradient": "from-indigo-500 to-purple-500",
+    "author": "Your Name",
+    "published": true
+  },
+  {
+    "slug": "css-animations-guide",
+    "title": {
+      "en": "The Complete CSS Animations Guide",
+      "id": "Panduan Lengkap Animasi CSS"
+    },
+    "excerpt": {
+      "en": "Create stunning animations with CSS. From basics to advanced techniques for smooth, performant animations.",
+      "id": "Buat animasi menakjubkan dengan CSS. Dari dasar hingga teknik lanjutan untuk animasi yang smooth dan performant."
+    },
+    "content": {
+      "en": "Full article content in English...",
+      "id": "Konten artikel lengkap dalam Bahasa Indonesia..."
+    },
+    "date": "2024-11-15",
+    "readTime": 6,
+    "category": {
+      "en": "CSS",
+      "id": "CSS"
+    },
+    "tags": ["CSS", "Animations", "Frontend"],
+    "gradient": "from-pink-500 to-rose-500",
+    "author": "Your Name",
+    "published": true
+  }
+]
