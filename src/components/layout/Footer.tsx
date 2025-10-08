@@ -34,7 +34,7 @@ export default function Footer({ locale }: { locale: string }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href={`/${locale}`} className="text-3xl font-bold gradient-text inline-block mb-4 uppercase tracking-wider">
+            <Link href={`/${locale}`} className="text-3xl font-bold gradient-text inline-block mb-4 uppercase tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>
               CODEBIRU
             </Link>
             <p className="text-gray-400 mb-6 max-w-md leading-relaxed">

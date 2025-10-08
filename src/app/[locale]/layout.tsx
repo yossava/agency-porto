@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk } from 'next/font/google';
+import { Space_Grotesk, Orbitron } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { setRequestLocale } from 'next-intl/server';
@@ -14,6 +14,11 @@ import '../globals.css';
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-space-grotesk',
+});
+
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  variable: '--font-orbitron',
 });
 
 export const metadata: Metadata = {
@@ -91,7 +96,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={spaceGrotesk.variable}>
+    <html lang={locale} className={`${spaceGrotesk.variable} ${orbitron.variable}`}>
       <body>
         <NextIntlClientProvider messages={messages}>
           <ScrollProgress />
