@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { setRequestLocale } from 'next-intl/server';
@@ -11,9 +11,9 @@ import InteractiveGrid from '@/components/InteractiveGrid';
 import ScrollProgress from '@/components/ScrollProgress';
 import '../globals.css';
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-space-grotesk',
 });
 
 export const metadata: Metadata = {
@@ -91,7 +91,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={inter.variable}>
+    <html lang={locale} className={spaceGrotesk.variable}>
       <body>
         <NextIntlClientProvider messages={messages}>
           <ScrollProgress />
