@@ -27,7 +27,7 @@ export default function Header() {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href={`/${locale}`} className="text-2xl font-bold gradient-text hover:scale-105 transition-transform uppercase tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>
+          <Link href={`/${locale}`} className="text-2xl font-bold gradient-text hover:scale-105 transition-transform uppercase tracking-wider" style={{ fontFamily: 'var(--font-montserrat)' }}>
             CODEBIRU
           </Link>
 
