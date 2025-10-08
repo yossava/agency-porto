@@ -106,7 +106,6 @@ export default function ServicesPage({ params: { locale } }: ServicesPageProps) 
   return (
     <div className="min-h-screen pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -121,51 +120,48 @@ export default function ServicesPage({ params: { locale } }: ServicesPageProps) 
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             {locale === 'en'
-              ? 'We offer comprehensive digital solutions to help your business thrive in the modern web. From design to deployment, we've got you covered.'
-              : 'Kami menawarkan solusi digital komprehensif untuk membantu bisnis Anda berkembang di web modern. Dari desain hingga deployment, kami siap membantu.'}
+              ? 'We offer comprehensive digital solutions to help your business thrive in the modern web.'
+              : 'Kami menawarkan solusi digital komprehensif untuk membantu bisnis Anda berkembang.'}
           </p>
         </motion.div>
 
-        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group glass rounded-3xl p-8 hover:border-white/30 transition-all duration-500"
-            >
-              {/* Icon */}
-              <div
-                className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group glass rounded-3xl p-8 hover:border-white/30 transition-all duration-500"
               >
-                <service.icon className="w-8 h-8 text-white" />
-              </div>
+                <div
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                >
+                  <Icon className="w-8 h-8 text-white" />
+                </div>
 
-              {/* Title */}
-              <h3 className="text-2xl font-bold mb-4 group-hover:gradient-text transition-all duration-300">
-                {service.title}
-              </h3>
+                <h3 className="text-2xl font-bold mb-4 group-hover:gradient-text transition-all duration-300">
+                  {service.title}
+                </h3>
 
-              {/* Description */}
-              <p className="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
+                <p className="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
 
-              {/* Features */}
-              <ul className="space-y-3">
-                {service.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
-                    <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${service.gradient}`} />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+                <ul className="space-y-3">
+                  {service.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
+                      <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${service.gradient}`} />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -178,8 +174,8 @@ export default function ServicesPage({ params: { locale } }: ServicesPageProps) 
           </h2>
           <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
             {locale === 'en'
-              ? "Let's discuss how we can help bring your vision to life with our expertise."
-              : 'Mari diskusikan bagaimana kami dapat membantu mewujudkan visi Anda dengan keahlian kami.'}
+              ? "Let's discuss how we can help bring your vision to life."
+              : 'Mari diskusikan bagaimana kami dapat membantu mewujudkan visi Anda.'}
           </p>
           <MagneticButton>
             <Link href={`/${locale}/contact`}>
