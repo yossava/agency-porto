@@ -107,19 +107,19 @@ export default function ContactPage({ params: { locale } }: ContactPageProps) {
     {
       icon: Mail,
       title: locale === 'en' ? 'Email' : 'Email',
-      value: 'hello@agency.com',
-      href: 'mailto:hello@agency.com',
+      value: 'hello@codebiru.com',
+      href: 'mailto:hello@codebiru.com',
     },
     {
       icon: Phone,
       title: locale === 'en' ? 'Phone' : 'Telepon',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
+      value: '+62 xxx xxxx xxxx',
+      href: 'tel:+62xxxxxxxxxx',
     },
     {
       icon: MapPin,
       title: locale === 'en' ? 'Location' : 'Lokasi',
-      value: locale === 'en' ? 'San Francisco, CA' : 'San Francisco, CA',
+      value: locale === 'en' ? 'Indonesia' : 'Indonesia',
       href: '#',
     },
   ];

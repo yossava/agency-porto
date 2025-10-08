@@ -1,8 +1,8 @@
 {
-  "name": "agency-website",
+  "name": "codebiru-website",
   "version": "0.1.0",
   "private": true,
-  "description": "A modern, bilingual (English & Indonesian) agency website built with Next.js 14, TypeScript, and Tailwind CSS.",
+  "description": "codebiru - A modern, bilingual (English & Indonesian) web development agency website built with Next.js 14, TypeScript, and Tailwind CSS.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

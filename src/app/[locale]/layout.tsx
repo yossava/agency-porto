@@ -18,8 +18,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Agency - Premium Web & App Development',
-    template: '%s | Agency',
+    default: 'codebiru - Premium Web & App Development',
+    template: '%s | codebiru',
   },
   description:
     'Transform your digital presence with cutting-edge web development, stunning UI/UX design, and innovative solutions. Expert team delivering excellence.',
@@ -33,10 +33,11 @@ export const metadata: Metadata = {
     'frontend development',
     'full stack development',
     'digital agency',
+    'codebiru',
   ],
-  authors: [{ name: 'Agency' }],
-  creator: 'Agency',
-  publisher: 'Agency',
+  authors: [{ name: 'codebiru' }],
+  creator: 'codebiru',
+  publisher: 'codebiru',
   formatDetection: {
     email: false,
     address: false,
@@ -45,18 +46,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://yourdomain.com',
-    title: 'Agency - Premium Web & App Development',
+    url: 'https://codebiru.com',
+    title: 'codebiru - Premium Web & App Development',
     description:
       'Transform your digital presence with cutting-edge web development and innovative solutions.',
-    siteName: 'Agency',
+    siteName: 'codebiru',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Agency - Premium Web & App Development',
+    title: 'codebiru - Premium Web & App Development',
     description:
       'Transform your digital presence with cutting-edge web development and innovative solutions.',
-    creator: '@youragency',
+    creator: '@codebiru',
   },
   robots: {
     index: true,

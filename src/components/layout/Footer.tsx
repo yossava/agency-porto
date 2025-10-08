@@ -35,7 +35,7 @@ export default function Footer({ locale }: { locale: string }) {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href={`/${locale}`} className="text-3xl font-bold gradient-text inline-block mb-4">
-              AGENCY
+              codebiru
             </Link>
             <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
               {locale === 'en'
