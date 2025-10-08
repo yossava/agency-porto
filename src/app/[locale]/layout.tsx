@@ -17,8 +17,58 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Agency - Web & App Development',
-  description: 'A modern web & app development agency',
+  title: {
+    default: 'Agency - Premium Web & App Development',
+    template: '%s | Agency',
+  },
+  description:
+    'Transform your digital presence with cutting-edge web development, stunning UI/UX design, and innovative solutions. Expert team delivering excellence.',
+  keywords: [
+    'web development',
+    'app development',
+    'UI/UX design',
+    'Next.js',
+    'React',
+    'TypeScript',
+    'frontend development',
+    'full stack development',
+    'digital agency',
+  ],
+  authors: [{ name: 'Agency' }],
+  creator: 'Agency',
+  publisher: 'Agency',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://yourdomain.com',
+    title: 'Agency - Premium Web & App Development',
+    description:
+      'Transform your digital presence with cutting-edge web development and innovative solutions.',
+    siteName: 'Agency',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Agency - Premium Web & App Development',
+    description:
+      'Transform your digital presence with cutting-edge web development and innovative solutions.',
+    creator: '@youragency',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export function generateStaticParams() {

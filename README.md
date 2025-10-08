@@ -2,25 +2,27 @@
 
 A modern, bilingual (English & Indonesian) agency website built with Next.js 14, TypeScript, and Tailwind CSS.
 
-## Features
+## ✨ Features
 
-- ✨ Modern, stunning design
-- 🌍 Bilingual support (English & Indonesian)
-- ⚡ Static Site Generation (SSG) for optimal performance
-- 🎨 Beautiful animations with Framer Motion
-- 📱 Fully responsive design
-- ♿ Accessibility-first approach
-- 🔍 SEO optimized
+- **🎨 Premium Design**: Glass-morphism, gradient effects, and smooth animations
+- **🌐 Bilingual**: Full support for English and Indonesian
+- **⚡ Performance**: Optimized with Next.js 14 App Router and static site generation
+- **📱 Responsive**: Mobile-first design that works on all devices
+- **🎭 Interactive**: 3D hero scene, magnetic buttons, particle grid, cursor interactions
+- **📝 Content Management**: JSON-based system for easy content updates (see [CONTENT_MANAGEMENT.md](CONTENT_MANAGEMENT.md))
+- **♿ Accessible**: Semantic HTML and ARIA labels
+- **🔍 SEO Optimized**: Meta tags, Open Graph, and Twitter Card support
 
-## Tech Stack
+## 🚀 Tech Stack
 
-- **Framework**: Next.js 14+ (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **i18n**: next-intl
-- **3D Graphics**: Three.js
-- **Forms**: React Hook Form + Zod
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router with Static Export)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Internationalization**: [next-intl](https://next-intl-docs.vercel.app/)
+- **3D Graphics**: [Three.js](https://threejs.org/) with React Three Fiber & Drei
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Fonts**: Space Grotesk & Inter (Google Fonts)
 
 ## Getting Started
 
