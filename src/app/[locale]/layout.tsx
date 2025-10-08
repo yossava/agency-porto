@@ -8,6 +8,7 @@ import { locales } from '@/../i18n/request';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import InteractiveGrid from '@/components/InteractiveGrid';
+import ScrollProgress from '@/components/ScrollProgress';
 import '../globals.css';
 
 const inter = Inter({
@@ -46,6 +47,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={inter.variable}>
       <body>
         <NextIntlClientProvider messages={messages}>
+          <ScrollProgress />
           <InteractiveGrid />
           <Header />
           <main className="min-h-screen relative">{children}</main>
