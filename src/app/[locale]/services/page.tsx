@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Code, Palette, Zap, Rocket, Shield, Users } from 'lucide-react';
+import { Code, Smartphone, Palette, Zap, Search, Wrench, Users, TrendingUp } from 'lucide-react';
 import MagneticButton from '@/components/MagneticButton';
 import Link from 'next/link';
 
@@ -16,28 +16,43 @@ export default function ServicesPage({ params: { locale } }: ServicesPageProps) 
       title: locale === 'en' ? 'Web Development' : 'Pengembangan Web',
       description:
         locale === 'en'
-          ? 'Custom websites and web applications built with cutting-edge technologies'
-          : 'Website dan aplikasi web custom yang dibangun dengan teknologi terkini',
+          ? 'From simple landing pages to complex enterprise applications, we build websites that work'
+          : 'Dari landing page sederhana hingga aplikasi enterprise kompleks, kami membangun website yang berfungsi',
       features: [
-        locale === 'en' ? 'Next.js & React Development' : 'Pengembangan Next.js & React',
-        locale === 'en' ? 'API Integration' : 'Integrasi API',
-        locale === 'en' ? 'Performance Optimization' : 'Optimasi Performa',
-        locale === 'en' ? 'SEO Best Practices' : 'Praktik Terbaik SEO',
+        locale === 'en' ? 'Simple to Complex Projects' : 'Proyek Sederhana hingga Kompleks',
+        locale === 'en' ? 'Custom Web Applications' : 'Aplikasi Web Kustom',
+        locale === 'en' ? 'E-commerce Solutions' : 'Solusi E-commerce',
+        locale === 'en' ? 'CMS Development' : 'Pengembangan CMS',
       ],
       gradient: 'from-blue-500 to-cyan-500',
     },
     {
+      icon: Smartphone,
+      title: locale === 'en' ? 'Mobile App Development' : 'Pengembangan Aplikasi Mobile',
+      description:
+        locale === 'en'
+          ? 'Native and cross-platform apps for Android, iOS, and smart watches'
+          : 'Aplikasi native dan cross-platform untuk Android, iOS, dan smart watch',
+      features: [
+        locale === 'en' ? 'Android Development' : 'Pengembangan Android',
+        locale === 'en' ? 'iOS Development' : 'Pengembangan iOS',
+        locale === 'en' ? 'Smart Watch Apps' : 'Aplikasi Smart Watch',
+        locale === 'en' ? 'Cross-Platform Solutions' : 'Solusi Cross-Platform',
+      ],
+      gradient: 'from-green-500 to-emerald-500',
+    },
+    {
       icon: Palette,
-      title: locale === 'en' ? 'UI/UX Design' : 'Desain UI/UX',
+      title: locale === 'en' ? 'UI Design' : 'Desain UI',
       description:
         locale === 'en'
           ? 'Beautiful, intuitive interfaces that users love to interact with'
           : 'Antarmuka yang indah dan intuitif yang disukai pengguna',
       features: [
-        locale === 'en' ? 'User Research' : 'Riset Pengguna',
-        locale === 'en' ? 'Wireframing & Prototyping' : 'Wireframing & Prototyping',
-        locale === 'en' ? 'Visual Design' : 'Desain Visual',
-        locale === 'en' ? 'Usability Testing' : 'Pengujian Usability',
+        locale === 'en' ? 'User Interface Design' : 'Desain Antarmuka Pengguna',
+        locale === 'en' ? 'Responsive Design' : 'Desain Responsif',
+        locale === 'en' ? 'Design Systems' : 'Sistem Desain',
+        locale === 'en' ? 'Prototyping' : 'Prototyping',
       ],
       gradient: 'from-purple-500 to-pink-500',
     },
@@ -46,43 +61,43 @@ export default function ServicesPage({ params: { locale } }: ServicesPageProps) 
       title: locale === 'en' ? 'Performance Optimization' : 'Optimasi Performa',
       description:
         locale === 'en'
-          ? 'Lightning-fast websites that score 95+ on Google Lighthouse'
-          : 'Website super cepat dengan skor 95+ di Google Lighthouse',
+          ? 'Lightning-fast websites that score 95+ on performance metrics'
+          : 'Website super cepat dengan skor 95+ pada metrik performa',
       features: [
+        locale === 'en' ? 'Speed Optimization' : 'Optimasi Kecepatan',
         locale === 'en' ? 'Core Web Vitals' : 'Core Web Vitals',
-        locale === 'en' ? 'Image Optimization' : 'Optimasi Gambar',
-        locale === 'en' ? 'Code Splitting' : 'Code Splitting',
-        locale === 'en' ? 'Caching Strategies' : 'Strategi Caching',
+        locale === 'en' ? 'Image & Asset Optimization' : 'Optimasi Gambar & Aset',
+        locale === 'en' ? 'Performance Audits' : 'Audit Performa',
       ],
       gradient: 'from-orange-500 to-red-500',
     },
     {
-      icon: Rocket,
-      title: locale === 'en' ? 'Deployment & Hosting' : 'Deployment & Hosting',
+      icon: Search,
+      title: locale === 'en' ? 'SEO' : 'SEO',
       description:
         locale === 'en'
-          ? 'Seamless deployment to cloud platforms with CI/CD automation'
-          : 'Deployment mulus ke platform cloud dengan otomasi CI/CD',
+          ? 'Boost your visibility and rank higher in search engine results'
+          : 'Tingkatkan visibilitas dan peringkat Anda di hasil mesin pencari',
       features: [
-        locale === 'en' ? 'Vercel & Netlify' : 'Vercel & Netlify',
-        locale === 'en' ? 'AWS & Google Cloud' : 'AWS & Google Cloud',
-        locale === 'en' ? 'CI/CD Pipelines' : 'Pipeline CI/CD',
-        locale === 'en' ? 'Domain Setup' : 'Pengaturan Domain',
+        locale === 'en' ? 'Technical SEO' : 'SEO Teknis',
+        locale === 'en' ? 'On-Page Optimization' : 'Optimasi On-Page',
+        locale === 'en' ? 'SEO Audits' : 'Audit SEO',
+        locale === 'en' ? 'Search Console Setup' : 'Pengaturan Search Console',
       ],
-      gradient: 'from-green-500 to-emerald-500',
+      gradient: 'from-teal-500 to-cyan-500',
     },
     {
-      icon: Shield,
-      title: locale === 'en' ? 'Security & Maintenance' : 'Keamanan & Pemeliharaan',
+      icon: Wrench,
+      title: locale === 'en' ? 'Maintenance' : 'Pemeliharaan',
       description:
         locale === 'en'
-          ? 'Keep your website secure and up-to-date with ongoing support'
-          : 'Jaga website Anda aman dan terkini dengan dukungan berkelanjutan',
+          ? 'Keep your website running smoothly with ongoing support and updates'
+          : 'Jaga website Anda berjalan lancar dengan dukungan dan update berkelanjutan',
       features: [
-        locale === 'en' ? 'SSL Certificates' : 'Sertifikat SSL',
-        locale === 'en' ? 'Security Audits' : 'Audit Keamanan',
         locale === 'en' ? 'Regular Updates' : 'Update Berkala',
-        locale === 'en' ? 'Backup Solutions' : 'Solusi Backup',
+        locale === 'en' ? 'Bug Fixes' : 'Perbaikan Bug',
+        locale === 'en' ? 'Security Patches' : 'Patch Keamanan',
+        locale === 'en' ? 'Technical Support' : 'Dukungan Teknis',
       ],
       gradient: 'from-indigo-500 to-purple-500',
     },
@@ -95,9 +110,9 @@ export default function ServicesPage({ params: { locale } }: ServicesPageProps) 
           : 'Panduan ahli tentang pilihan teknologi dan strategi digital',
       features: [
         locale === 'en' ? 'Technology Consulting' : 'Konsultasi Teknologi',
+        locale === 'en' ? 'Digital Strategy' : 'Strategi Digital',
         locale === 'en' ? 'Architecture Planning' : 'Perencanaan Arsitektur',
-        locale === 'en' ? 'Team Training' : 'Pelatihan Tim',
-        locale === 'en' ? 'Code Reviews' : 'Review Kode',
+        locale === 'en' ? 'Best Practices' : 'Praktik Terbaik',
       ],
       gradient: 'from-pink-500 to-rose-500',
     },
