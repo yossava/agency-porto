@@ -43,7 +43,7 @@ export default function CTASection({ locale }: CTASectionProps) {
             </div>
 
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              {locale === 'en' ? "Let's Build Something" : 'Mari Bangun Sesuatu'}
+              {locale === 'en' ? 'Let Us Build Something' : 'Mari Bangun Sesuatu'}
               <span className="block gradient-text mt-2">
                 {locale === 'en' ? 'Amazing Together' : 'Luar Biasa Bersama'}
               </span>
@@ -51,7 +51,7 @@ export default function CTASection({ locale }: CTASectionProps) {
 
             <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
               {locale === 'en'
-                ? "Have a project in mind? We'd love to help bring your vision to life with cutting-edge technology and exceptional design."
+                ? 'Have a project in mind? We would love to help bring your vision to life with cutting-edge technology and exceptional design.'
                 : 'Punya proyek dalam pikiran? Kami ingin membantu mewujudkan visi Anda dengan teknologi terkini dan desain luar biasa.'}
             </p>
 

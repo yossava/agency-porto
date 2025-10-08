@@ -80,7 +80,7 @@ export default function Hero({ locale }: HeroProps) {
           className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
         >
           {locale === 'en'
-            ? 'We design and develop innovative web experiences that push the boundaries of what\'s possible. Every pixel, every interaction, meticulously crafted.'
+            ? 'We design and develop innovative web experiences that push the boundaries of what is possible. Every pixel, every interaction, meticulously crafted.'
             : 'Kami merancang dan mengembangkan pengalaman web inovatif yang melampaui batas kemungkinan. Setiap pixel, setiap interaksi, dibuat dengan cermat.'}
         </motion.p>
 
@@ -93,7 +93,7 @@ export default function Hero({ locale }: HeroProps) {
             <Link href={`/${locale}/contact`}>
               <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full font-semibold text-white overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/50">
                 <span className="relative z-10 flex items-center gap-2">
-                  {locale === 'en' ? "Let's Talk" : 'Mari Bicara'}
+                  {locale === 'en' ? 'Let Us Talk' : 'Mari Bicara'}
                   <svg
                     className="w-5 h-5 group-hover:translate-x-1 transition-transform"
                     fill="none"

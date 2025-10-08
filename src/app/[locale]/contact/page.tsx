@@ -71,14 +71,14 @@ export default function ContactPage({ params: { locale } }: ContactPageProps) {
           className="text-center mb-20"
         >
           <h1 className="text-6xl md:text-7xl font-bold mb-6">
-            {locale === 'en' ? "Let's Work" : 'Mari Bekerja'}
+            {locale === 'en' ? 'Let Us Work' : 'Mari Bekerja'}
             <span className="block gradient-text">
               {locale === 'en' ? 'Together' : 'Bersama'}
             </span>
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             {locale === 'en'
-              ? 'Have a project in mind? We'd love to hear from you. Send us a message and we'll respond as soon as possible.'
+              ? 'Have a project in mind? We would love to hear from you. Send us a message and we will respond as soon as possible.'
               : 'Punya proyek dalam pikiran? Kami ingin mendengar dari Anda. Kirim pesan dan kami akan merespons secepat mungkin.'}
           </p>
         </motion.div>
