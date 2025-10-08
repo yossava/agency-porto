@@ -1,0 +1,30 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "work": "Work",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Build Digital Experiences That Matter",
+    "subtitle": "We craft stunning websites and powerful web applications that drive results",
+    "cta": "Start Your Project",
+    "viewWork": "View Our Work"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive solutions for your digital needs"
+  },
+  "footer": {
+    "copyright": "All rights reserved.",
+    "followUs": "Follow Us"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "viewAll": "View All",
+    "readMore": "Read More"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "services": "Layanan",
+    "work": "Portofolio",
+    "about": "Tentang",
+    "blog": "Blog",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "title": "Bangun Pengalaman Digital Yang Bermakna",
+    "subtitle": "Kami menciptakan website menakjubkan dan aplikasi web yang powerful untuk hasil maksimal",
+    "cta": "Mulai Proyek Anda",
+    "viewWork": "Lihat Karya Kami"
+  },
+  "services": {
+    "title": "Layanan Kami",
+    "subtitle": "Solusi komprehensif untuk kebutuhan digital Anda"
+  },
+  "footer": {
+    "copyright": "Hak cipta dilindungi.",
+    "followUs": "Ikuti Kami"
+  },
+  "common": {
+    "learnMore": "Pelajari Lebih Lanjut",
+    "getStarted": "Mulai Sekarang",
+    "viewAll": "Lihat Semua",
+    "readMore": "Baca Selengkapnya"
+  }
+}
