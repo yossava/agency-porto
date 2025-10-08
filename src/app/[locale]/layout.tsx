@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { locales } from '@/../i18n/request';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import InteractiveGrid from '@/components/InteractiveGrid';
 import '../globals.css';
 
 const inter = Inter({
@@ -45,8 +46,9 @@ export default async function LocaleLayout({
     <html lang={locale} className={inter.variable}>
       <body>
         <NextIntlClientProvider messages={messages}>
+          <InteractiveGrid />
           <Header />
-          <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen relative">{children}</main>
           <Footer locale={locale} />
         </NextIntlClientProvider>
       </body>

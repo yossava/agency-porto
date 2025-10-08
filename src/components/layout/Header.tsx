@@ -23,12 +23,12 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-dark-200">
+    <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href={`/${locale}`} className="text-2xl font-bold text-primary-500">
-            Agency
+          <Link href={`/${locale}`} className="text-2xl font-bold gradient-text hover:scale-105 transition-transform">
+            AGENCY
           </Link>
 
           {/* Desktop Navigation */}
@@ -37,9 +37,10 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-dark-700 hover:text-primary-500 transition-colors font-medium"
+                className="relative text-gray-300 hover:text-white transition-colors font-medium group"
               >
                 {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
           </div>
@@ -50,7 +51,7 @@ export default function Header() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-dark-700 hover:text-primary-500"
+              className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -60,13 +61,13 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-dark-200">
+          <div className="md:hidden py-4 border-t border-white/10">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 text-dark-700 hover:text-primary-500 transition-colors font-medium"
+                className="block py-3 text-gray-300 hover:text-white hover:gradient-text transition-all font-medium"
               >
                 {item.label}
               </Link>
