@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import MagneticButton from '@/components/MagneticButton';
@@ -18,12 +18,45 @@ export default function ContactPage({ params: { locale } }: ContactPageProps) {
     message: '',
   });
 
+  // Honeypot field (invisible to users, catches bots)
+  const [honeypot, setHoneypot] = useState('');
+
+  // Simple math captcha
+  const [captchaAnswer, setCaptchaAnswer] = useState('');
+  const [captchaQuestion, setCaptchaQuestion] = useState({ num1: 0, num2: 0, answer: 0 });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Generate new captcha question on mount
+  useEffect(() => {
+    generateCaptcha();
+  }, []);
+
+  const generateCaptcha = () => {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    setCaptchaQuestion({ num1, num2, answer: num1 + num2 });
+    setCaptchaAnswer('');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot check - if filled, it's a bot
+    if (honeypot) {
+      console.log('Bot detected via honeypot');
+      return;
+    }
+
+    // Captcha check
+    if (parseInt(captchaAnswer) !== captchaQuestion.answer) {
+      alert(locale === 'en' ? 'Incorrect answer. Please try again.' : 'Jawaban salah. Silakan coba lagi.');
+      generateCaptcha();
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage('');
@@ -37,6 +70,8 @@ export default function ContactPage({ params: { locale } }: ContactPageProps) {
         body: JSON.stringify({
           ...formData,
           locale,
+          // Send captcha answer for server-side validation
+          captcha: captchaAnswer,
         }),
       });
 
@@ -45,6 +80,7 @@ export default function ContactPage({ params: { locale } }: ContactPageProps) {
       if (data.success) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
+        generateCaptcha(); // Generate new captcha for next submission
         alert(data.message || (locale === 'en' ? 'Message sent successfully!' : 'Pesan berhasil dikirim!'));
       } else {
         setSubmitStatus('error');
@@ -233,6 +269,45 @@ export default function ContactPage({ params: { locale } }: ContactPageProps) {
                       : 'Ceritakan tentang proyek Anda...'
                   }
                 />
+              </div>
+
+              {/* Honeypot field - hidden from users, catches bots */}
+              <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
+              {/* Math CAPTCHA */}
+              <div>
+                <label htmlFor="captcha" className="block text-sm font-medium mb-2">
+                  {locale === 'en' ? 'Security Check' : 'Verifikasi Keamanan'}{' '}
+                  <span className="text-red-400">*</span>
+                </label>
+                <div className="flex items-center gap-4">
+                  <div className="glass px-4 py-3 rounded-xl border border-white/10 text-white font-mono">
+                    {captchaQuestion.num1} + {captchaQuestion.num2} = ?
+                  </div>
+                  <input
+                    type="number"
+                    id="captcha"
+                    value={captchaAnswer}
+                    onChange={(e) => setCaptchaAnswer(e.target.value)}
+                    required
+                    className="w-24 px-4 py-3 glass rounded-xl border border-white/10 focus:border-blue-400 focus:outline-none transition-all duration-300 text-white placeholder-gray-500"
+                    placeholder="?"
+                  />
+                </div>
+                <p className="text-xs text-gray-500 mt-2">
+                  {locale === 'en'
+                    ? 'Please solve this simple math problem to verify you are human'
+                    : 'Silakan selesaikan soal matematika sederhana ini untuk memverifikasi Anda manusia'}
+                </p>
               </div>
 
               <MagneticButton>
