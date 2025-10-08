@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Project } from '@/lib/content';
+import type { Project } from '@/lib/db/projects';
 
 interface FeaturedWorkProps {
   locale: string;

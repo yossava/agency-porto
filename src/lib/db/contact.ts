@@ -1,5 +1,6 @@
 import { getDatabase } from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
+import { validateObjectId } from '@/lib/security';
 
 export interface ContactSubmission {
   _id?: ObjectId;
@@ -74,9 +75,12 @@ export async function getContactSubmissions(
 export async function getContactSubmissionById(id: string): Promise<ContactSubmission | null> {
   const db = await getDatabase();
 
+  // Validate ObjectId format before querying
+  const objectId = validateObjectId(id);
+
   const submission = await db
     .collection<ContactSubmission>('contact_submissions')
-    .findOne({ _id: new ObjectId(id) });
+    .findOne({ _id: objectId });
 
   return submission;
 }
@@ -93,6 +97,9 @@ export async function updateContactSubmissionStatus(
 ) {
   const db = await getDatabase();
 
+  // Validate ObjectId format before querying
+  const objectId = validateObjectId(id);
+
   const updateData: any = { status };
 
   // Set timestamp based on status
@@ -105,7 +112,7 @@ export async function updateContactSubmissionStatus(
 
   const result = await db
     .collection<ContactSubmission>('contact_submissions')
-    .updateOne({ _id: new ObjectId(id) }, { $set: updateData });
+    .updateOne({ _id: objectId }, { $set: updateData });
 
   return result;
 }

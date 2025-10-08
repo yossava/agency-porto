@@ -1,19 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createContactSubmission } from '@/lib/db/contact';
+import { sanitizeErrorMessage, logError } from '@/lib/security';
 import { z } from 'zod';
 
-// Validation schema
+// Validation schema with strict rules to prevent injection
 const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().optional(),
-  company: z.string().optional(),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
-  subject: z.string().optional(),
+  name: z
+    .string()
+    .min(2, 'Name must be at least 2 characters')
+    .max(100, 'Name is too long')
+    .regex(/^[a-zA-Z\s'-]+$/, 'Name contains invalid characters'),
+  email: z
+    .string()
+    .email('Invalid email address')
+    .max(255, 'Email is too long'),
+  phone: z
+    .string()
+    .max(20, 'Phone number is too long')
+    .regex(/^[0-9\s\-\+\(\)]*$/, 'Phone contains invalid characters')
+    .optional(),
+  company: z
+    .string()
+    .max(100, 'Company name is too long')
+    .optional(),
+  message: z
+    .string()
+    .min(10, 'Message must be at least 10 characters')
+    .max(5000, 'Message is too long'),
+  subject: z
+    .string()
+    .max(200, 'Subject is too long')
+    .optional(),
   locale: z.enum(['id', 'en']),
 });
 
-// Simple in-memory rate limiting (use Redis in production)
+// Simple in-memory rate limiting
+// NOTE: This is for development only. In production, use Redis or a
+// dedicated rate limiting service to work across multiple server instances.
 const rateLimitMap = new Map<string, number[]>();
 
 function rateLimit(ip: string, maxRequests: number = 3, windowMs: number = 60000): boolean {
@@ -54,11 +77,11 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = contactSchema.parse(body);
 
-    // Get metadata
+    // Get metadata (sanitized)
     const metadata = {
-      userAgent: request.headers.get('user-agent') || undefined,
-      ip: ip !== 'unknown' ? ip : undefined,
-      referrer: request.headers.get('referer') || undefined,
+      userAgent: request.headers.get('user-agent')?.substring(0, 200) || undefined,
+      ip: ip !== 'unknown' ? ip.substring(0, 45) : undefined, // IPv6 max length
+      referrer: request.headers.get('referer')?.substring(0, 500) || undefined,
     };
 
     // Save to database
@@ -79,14 +102,17 @@ export async function POST(request: NextRequest) {
       id: result.insertedId.toString(),
     });
   } catch (error) {
-    console.error('Error submitting contact form:', error);
+    logError('API:contact', error);
 
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         {
           success: false,
           error: 'Validation failed',
-          details: error.errors,
+          details: error.errors.map(e => ({
+            field: e.path.join('.'),
+            message: e.message,
+          })),
         },
         { status: 400 }
       );
@@ -95,8 +121,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: 'Failed to submit contact form',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        error: sanitizeErrorMessage(error, 'Failed to submit contact form'),
       },
       { status: 500 }
     );

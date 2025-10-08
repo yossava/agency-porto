@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAllProjects, getFeaturedProjects } from '@/lib/db/projects';
+import { sanitizeErrorMessage, logError } from '@/lib/security';
 
 export async function GET(request: NextRequest) {
   try {
@@ -20,12 +21,11 @@ export async function GET(request: NextRequest) {
       count: projects.length,
     });
   } catch (error) {
-    console.error('Error fetching projects:', error);
+    logError('API:projects', error);
     return NextResponse.json(
       {
         success: false,
-        error: 'Failed to fetch projects',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        error: sanitizeErrorMessage(error, 'Failed to fetch projects'),
       },
       { status: 500 }
     );

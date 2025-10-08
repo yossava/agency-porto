@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowLeft, Tag } from 'lucide-react';
 import Link from 'next/link';
+import type { BlogPost } from '@/lib/db/blog';
 
 // Helper function to format date (duplicated to avoid importing server code)
 function formatDate(dateString: string, locale: 'en' | 'id' = 'en'): string {
@@ -13,20 +14,6 @@ function formatDate(dateString: string, locale: 'en' | 'id' = 'en'): string {
     day: 'numeric',
   };
   return date.toLocaleDateString(locale === 'en' ? 'en-US' : 'id-ID', options);
-}
-
-interface BlogPost {
-  slug: string;
-  title: { en: string; id: string };
-  excerpt: { en: string; id: string };
-  content: { en: string; id: string };
-  date: string;
-  readTime: number;
-  category: { en: string; id: string };
-  tags: string[];
-  gradient: string;
-  author: string;
-  published: boolean;
 }
 
 interface BlogPostClientProps {
@@ -86,7 +73,7 @@ export default function BlogPostClient({ post, relatedPosts, locale }: BlogPostC
             </div>
             <div className="flex items-center gap-2">
               <span className="text-gray-500">by</span>
-              <span className="text-white font-medium">{post.author}</span>
+              <span className="text-white font-medium">{post.author.name}</span>
             </div>
           </div>
 

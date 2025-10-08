@@ -1,16 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAllBlogPosts, getFeaturedBlogPosts } from '@/lib/db/blog';
+import { validateNumber, sanitizeErrorMessage, logError } from '@/lib/security';
 
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const featured = searchParams.get('featured');
-    const limit = searchParams.get('limit');
+    const limitParam = searchParams.get('limit');
 
     let posts;
 
     if (featured === 'true') {
-      posts = await getFeaturedBlogPosts(limit ? parseInt(limit) : 3);
+      // Validate limit parameter with safe bounds
+      const limit = limitParam
+        ? validateNumber(limitParam, { min: 1, max: 100, default: 3 })
+        : 3;
+
+      posts = await getFeaturedBlogPosts(limit);
     } else {
       posts = await getAllBlogPosts();
     }
@@ -21,12 +27,23 @@ export async function GET(request: NextRequest) {
       count: posts.length,
     });
   } catch (error) {
-    console.error('Error fetching blog posts:', error);
+    logError('API:blog', error);
+
+    // Return appropriate error based on type
+    if (error instanceof Error && error.message.includes('Invalid')) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Invalid parameters',
+        },
+        { status: 400 }
+      );
+    }
+
     return NextResponse.json(
       {
         success: false,
-        error: 'Failed to fetch blog posts',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        error: sanitizeErrorMessage(error, 'Failed to fetch blog posts'),
       },
       { status: 500 }
     );

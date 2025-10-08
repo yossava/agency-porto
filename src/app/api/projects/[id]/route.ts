@@ -1,12 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getProjectById } from '@/lib/db/projects';
+import { validateId, sanitizeErrorMessage, logError } from '@/lib/security';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const project = await getProjectById(params.id);
+    // Validate and sanitize the ID parameter to prevent NoSQL injection
+    const sanitizedId = validateId(params.id);
+
+    const project = await getProjectById(sanitizedId);
 
     if (!project) {
       return NextResponse.json(
@@ -23,12 +27,23 @@ export async function GET(
       data: project,
     });
   } catch (error) {
-    console.error('Error fetching project:', error);
+    logError('API:projects/[id]', error);
+
+    // Return appropriate error based on type
+    if (error instanceof Error && error.message.includes('Invalid')) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Invalid project ID',
+        },
+        { status: 400 }
+      );
+    }
+
     return NextResponse.json(
       {
         success: false,
-        error: 'Failed to fetch project',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        error: sanitizeErrorMessage(error, 'Failed to fetch project'),
       },
       { status: 500 }
     );
