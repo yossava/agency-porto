@@ -19,17 +19,45 @@ export default function ContactPage({ params: { locale } }: ContactPageProps) {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          locale,
+        }),
+      });
 
-    alert(locale === 'en' ? 'Message sent successfully!' : 'Pesan berhasil dikirim!');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setIsSubmitting(false);
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        alert(data.message || (locale === 'en' ? 'Message sent successfully!' : 'Pesan berhasil dikirim!'));
+      } else {
+        setSubmitStatus('error');
+        setErrorMessage(data.error || (locale === 'en' ? 'Failed to send message' : 'Gagal mengirim pesan'));
+        alert(data.error || (locale === 'en' ? 'Failed to send message' : 'Gagal mengirim pesan'));
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage(locale === 'en' ? 'Network error. Please try again.' : 'Kesalahan jaringan. Silakan coba lagi.');
+      alert(locale === 'en' ? 'Network error. Please try again.' : 'Kesalahan jaringan. Silakan coba lagi.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
