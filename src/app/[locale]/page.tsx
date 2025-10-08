@@ -4,6 +4,10 @@ import Button from '@/components/ui/Button';
 import Section from '@/components/ui/Section';
 import Link from 'next/link';
 
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'id' }];
+}
+
 export default function HomePage({ params: { locale } }: { params: { locale: string } }) {
   // Enable static rendering
   setRequestLocale(locale);
