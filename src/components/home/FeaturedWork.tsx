@@ -1,15 +1,24 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
+import { getFeaturedProjects } from '@/lib/content';
 
 interface FeaturedWorkProps {
   locale: string;
 }
 
 export default function FeaturedWork({ locale }: FeaturedWorkProps) {
-  const projects = [
+  const featuredProjects = getFeaturedProjects();
+  const currentLocale = locale as 'en' | 'id';
+
+  // Assign sizes to featured projects for bento grid layout
+  const projectsWithSizes = featuredProjects.slice(0, 4).map((project, index) => ({
+    ...project,
+    size: index === 0 ? 'large' : index === 3 ? 'small' : 'medium',
+  }));
+
+  const projectsOld = [
     {
       id: 1,
       title: locale === 'en' ? 'E-commerce Platform' : 'Platform E-commerce',
@@ -79,7 +88,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {projects.map((project, index) => (
+          {projectsWithSizes.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
@@ -92,7 +101,7 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
                 ${project.size === 'small' ? 'lg:col-span-2 lg:row-span-1' : ''}
               `}
             >
-              <Link href={`/${locale}/work/${project.id}`}>
+              <Link href={`/${locale}/work`}>
                 <div className="group relative glass rounded-3xl overflow-hidden h-full min-h-[300px] transition-all duration-500 hover:border-white/30">
                   {/* Gradient Background */}
                   <div
@@ -111,13 +120,13 @@ export default function FeaturedWork({ locale }: FeaturedWorkProps) {
                   <div className="relative h-full p-8 flex flex-col justify-between">
                     <div>
                       <div className="inline-block px-4 py-2 glass rounded-full text-sm font-medium text-blue-300 mb-4">
-                        {project.category}
+                        {project.category[currentLocale]}
                       </div>
                       <h3 className="text-3xl font-bold mb-3 group-hover:gradient-text transition-all duration-300">
-                        {project.title}
+                        {project.title[currentLocale]}
                       </h3>
                       <p className="text-gray-400 leading-relaxed">
-                        {project.description}
+                        {project.description[currentLocale]}
                       </p>
                     </div>
 
