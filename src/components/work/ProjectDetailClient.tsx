@@ -3,7 +3,17 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Github, ExternalLink, Calendar, Tag } from 'lucide-react';
 import Link from 'next/link';
-import { formatDate } from '@/lib/content';
+
+// Helper function to format date (duplicated to avoid importing server code)
+function formatDate(dateString: string, locale: 'en' | 'id' = 'en'): string {
+  const date = new Date(dateString);
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  };
+  return date.toLocaleDateString(locale === 'en' ? 'en-US' : 'id-ID', options);
+}
 
 interface Project {
   id: string;

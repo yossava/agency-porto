@@ -2,14 +2,15 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { getFeaturedProjects } from '@/lib/content';
+import { Project } from '@/lib/content';
 
 interface FeaturedWorkProps {
   locale: string;
+  projects: Project[];
 }
 
-export default function FeaturedWork({ locale }: FeaturedWorkProps) {
-  const featuredProjects = getFeaturedProjects();
+export default function FeaturedWork({ locale, projects }: FeaturedWorkProps) {
+  const featuredProjects = projects;
   const currentLocale = locale as 'en' | 'id';
 
   // Assign sizes to featured projects for bento grid layout

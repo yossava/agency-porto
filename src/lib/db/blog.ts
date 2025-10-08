@@ -2,6 +2,35 @@ import { getDatabase } from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 
 export interface BlogPost {
+  _id?: string;
+  slug: string;
+  title: { id: string; en: string };
+  excerpt: { id: string; en: string };
+  content: { id: string; en: string };
+  category: { id: string; en: string };
+  tags: string[];
+  gradient: string;
+  thumbnail?: string;
+  author: {
+    name: string;
+    avatar?: string;
+    bio?: { id: string; en: string };
+  };
+  readTime: number;
+  published: boolean;
+  featured: boolean;
+  date: string;
+  createdAt?: string;
+  updatedAt?: string;
+  views?: number;
+  seo?: {
+    metaTitle?: { id: string; en: string };
+    metaDescription?: { id: string; en: string };
+    ogImage?: string;
+  };
+}
+
+interface BlogPostDocument {
   _id?: ObjectId;
   slug: string;
   title: { id: string; en: string };
@@ -31,18 +60,31 @@ export interface BlogPost {
 }
 
 /**
+ * Serialize MongoDB document to plain object for client components
+ */
+function serializeBlogPost(doc: BlogPostDocument): BlogPost {
+  return {
+    ...doc,
+    _id: doc._id?.toString(),
+    date: doc.date.toISOString(),
+    createdAt: doc.createdAt?.toISOString(),
+    updatedAt: doc.updatedAt?.toISOString(),
+  };
+}
+
+/**
  * Get all published blog posts
  * @returns Array of blog posts sorted by date
  */
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
   const db = await getDatabase();
   const posts = await db
-    .collection<BlogPost>('blog_posts')
+    .collection<BlogPostDocument>('blog_posts')
     .find({ published: true })
     .sort({ date: -1 })
     .toArray();
 
-  return posts;
+  return posts.map(serializeBlogPost);
 }
 
 /**
@@ -53,17 +95,17 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   const db = await getDatabase();
   const post = await db
-    .collection<BlogPost>('blog_posts')
+    .collection<BlogPostDocument>('blog_posts')
     .findOne({ slug, published: true });
 
   // Increment view count
   if (post) {
     await db
-      .collection<BlogPost>('blog_posts')
+      .collection<BlogPostDocument>('blog_posts')
       .updateOne({ slug }, { $inc: { views: 1 } });
   }
 
-  return post;
+  return post ? serializeBlogPost(post) : null;
 }
 
 /**
@@ -74,13 +116,13 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 export async function getFeaturedBlogPosts(limit: number = 3): Promise<BlogPost[]> {
   const db = await getDatabase();
   const posts = await db
-    .collection<BlogPost>('blog_posts')
+    .collection<BlogPostDocument>('blog_posts')
     .find({ published: true, featured: true })
     .sort({ date: -1 })
     .limit(limit)
     .toArray();
 
-  return posts;
+  return posts.map(serializeBlogPost);
 }
 
 /**
@@ -95,7 +137,7 @@ export async function getBlogPostsByCategory(
 ): Promise<BlogPost[]> {
   const db = await getDatabase();
   const posts = await db
-    .collection<BlogPost>('blog_posts')
+    .collection<BlogPostDocument>('blog_posts')
     .find({
       published: true,
       [`category.${locale}`]: category,
@@ -103,7 +145,7 @@ export async function getBlogPostsByCategory(
     .sort({ date: -1 })
     .toArray();
 
-  return posts;
+  return posts.map(serializeBlogPost);
 }
 
 /**
@@ -122,7 +164,7 @@ export async function getRelatedBlogPosts(
 ): Promise<BlogPost[]> {
   const db = await getDatabase();
   const posts = await db
-    .collection<BlogPost>('blog_posts')
+    .collection<BlogPostDocument>('blog_posts')
     .find({
       published: true,
       slug: { $ne: slug },
@@ -132,7 +174,7 @@ export async function getRelatedBlogPosts(
     .limit(limit)
     .toArray();
 
-  return posts;
+  return posts.map(serializeBlogPost);
 }
 
 /**
@@ -143,11 +185,11 @@ export async function getRelatedBlogPosts(
 export async function getRecentBlogPosts(limit: number = 5): Promise<BlogPost[]> {
   const db = await getDatabase();
   const posts = await db
-    .collection<BlogPost>('blog_posts')
+    .collection<BlogPostDocument>('blog_posts')
     .find({ published: true })
     .sort({ date: -1 })
     .limit(limit)
     .toArray();
 
-  return posts;
+  return posts.map(serializeBlogPost);
 }

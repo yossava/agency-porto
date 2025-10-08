@@ -2,6 +2,26 @@ import { getDatabase } from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 
 export interface Project {
+  _id?: string;
+  id: string;
+  title: { id: string; en: string };
+  category: { id: string; en: string };
+  description: { id: string; en: string };
+  content?: { id: string; en: string };
+  tags: string[];
+  gradient: string;
+  thumbnail?: string;
+  images?: string[];
+  github?: string;
+  demo?: string;
+  featured: boolean;
+  published: boolean;
+  date: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+interface ProjectDocument {
   _id?: ObjectId;
   id: string;
   title: { id: string; en: string };
@@ -22,18 +42,31 @@ export interface Project {
 }
 
 /**
+ * Serialize MongoDB document to plain object for client components
+ */
+function serializeProject(doc: ProjectDocument): Project {
+  return {
+    ...doc,
+    _id: doc._id?.toString(),
+    date: doc.date.toISOString(),
+    createdAt: doc.createdAt?.toISOString(),
+    updatedAt: doc.updatedAt?.toISOString(),
+  };
+}
+
+/**
  * Get all published projects
  * @returns Array of projects
  */
 export async function getAllProjects(): Promise<Project[]> {
   const db = await getDatabase();
   const projects = await db
-    .collection<Project>('projects')
+    .collection<ProjectDocument>('projects')
     .find({ published: true })
     .sort({ date: -1 })
     .toArray();
 
-  return projects;
+  return projects.map(serializeProject);
 }
 
 /**
@@ -44,13 +77,13 @@ export async function getAllProjects(): Promise<Project[]> {
 export async function getFeaturedProjects(limit: number = 4): Promise<Project[]> {
   const db = await getDatabase();
   const projects = await db
-    .collection<Project>('projects')
+    .collection<ProjectDocument>('projects')
     .find({ published: true, featured: true })
     .sort({ date: -1 })
     .limit(limit)
     .toArray();
 
-  return projects;
+  return projects.map(serializeProject);
 }
 
 /**
@@ -61,10 +94,10 @@ export async function getFeaturedProjects(limit: number = 4): Promise<Project[]>
 export async function getProjectById(id: string): Promise<Project | null> {
   const db = await getDatabase();
   const project = await db
-    .collection<Project>('projects')
+    .collection<ProjectDocument>('projects')
     .findOne({ id, published: true });
 
-  return project;
+  return project ? serializeProject(project) : null;
 }
 
 /**
@@ -79,7 +112,7 @@ export async function getProjectsByCategory(
 ): Promise<Project[]> {
   const db = await getDatabase();
   const projects = await db
-    .collection<Project>('projects')
+    .collection<ProjectDocument>('projects')
     .find({
       published: true,
       [`category.${locale}`]: category,
@@ -87,7 +120,7 @@ export async function getProjectsByCategory(
     .sort({ date: -1 })
     .toArray();
 
-  return projects;
+  return projects.map(serializeProject);
 }
 
 /**
@@ -106,7 +139,7 @@ export async function getRelatedProjects(
 ): Promise<Project[]> {
   const db = await getDatabase();
   const projects = await db
-    .collection<Project>('projects')
+    .collection<ProjectDocument>('projects')
     .find({
       published: true,
       id: { $ne: projectId },
@@ -116,5 +149,5 @@ export async function getRelatedProjects(
     .limit(limit)
     .toArray();
 
-  return projects;
+  return projects.map(serializeProject);
 }
