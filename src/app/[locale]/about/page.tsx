@@ -98,7 +98,7 @@ export default function AboutPage({ params: { locale } }: AboutPageProps) {
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             {locale === 'en'
-              ? "We're a team of passionate developers and designers dedicated to creating exceptional digital experiences that make a difference."
+              ? 'We are a team of passionate developers and designers dedicated to creating exceptional digital experiences that make a difference.'
               : 'Kami adalah tim developer dan desainer yang berdedikasi menciptakan pengalaman digital luar biasa yang membuat perbedaan.'}
           </p>
         </motion.div>
@@ -201,7 +201,7 @@ export default function AboutPage({ params: { locale } }: AboutPageProps) {
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
             {locale === 'en'
-              ? 'To empower businesses with cutting-edge web solutions that drive growth, enhance user experiences, and push the boundaries of what's possible on the web.'
+              ? 'To empower businesses with cutting-edge web solutions that drive growth, enhance user experiences, and push the boundaries of what is possible on the web.'
               : 'Memberdayakan bisnis dengan solusi web terkini yang mendorong pertumbuhan, meningkatkan pengalaman pengguna, dan melampaui batas kemungkinan di web.'}
           </p>
         </motion.div>
