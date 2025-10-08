@@ -84,13 +84,13 @@ export default function Footer({ locale }: { locale: string }) {
             </h4>
             <div className="space-y-4">
               <a
-                href="mailto:hello@agency.com"
+                href="mailto:hello@codebiru.com"
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
               >
                 <div className="w-8 h-8 glass rounded-lg flex items-center justify-center group-hover:border-white/30 transition-all">
                   <Mail size={16} />
                 </div>
-                <span>hello@agency.com</span>
+                <span>hello@codebiru.com</span>
               </a>
               <p className="text-gray-400 text-sm leading-relaxed">
                 {locale === 'en'
@@ -104,7 +104,7 @@ export default function Footer({ locale }: { locale: string }) {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            © {currentYear} AGENCY.{' '}
+            © {currentYear} codebiru.{' '}
             {locale === 'en' ? 'All rights reserved.' : 'Hak cipta dilindungi.'}
           </p>
 
