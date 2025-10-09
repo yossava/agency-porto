@@ -94,11 +94,11 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
           </h3>
         </motion.div>
 
-        <div className="relative overflow-hidden py-8">
+        <div className="relative overflow-hidden py-4 bg-white/95">
           <motion.div
             animate={{ x: [0, -2400] }}
             transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
-            className="flex gap-4 items-center"
+            className="flex gap-8 items-center px-8"
           >
             {[
               { name: 'JavaScript', image: '/images/stacks/js.webp' },
@@ -147,14 +147,14 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
               .map((tech, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 hover:scale-110 transition-transform duration-300 w-20 h-20 flex items-center justify-center rounded-lg bg-gradient-to-br from-blue-400/40 via-purple-400/40 to-pink-400/40 backdrop-blur-md hover:from-blue-400/50 hover:via-purple-400/50 hover:to-pink-400/50"
+                  className="flex-shrink-0 hover:scale-110 transition-transform duration-300"
                   title={tech.name}
                 >
                   <Image
                     src={tech.image}
                     alt={tech.name}
-                    width={56}
-                    height={56}
+                    width={64}
+                    height={64}
                     className="object-contain"
                   />
                 </div>
