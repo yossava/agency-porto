@@ -11,28 +11,60 @@ interface ServicesSectionProps {
 export default function ServicesSection({ locale }: ServicesSectionProps) {
   const services = [
     {
+      icon: '💻',
       title: locale === 'en' ? 'Web Development' : 'Pengembangan Web',
       description:
         locale === 'en'
-          ? 'Lightning-fast, pixel-perfect websites built with cutting-edge technology'
-          : 'Website super cepat dan sempurna, dibangun dengan teknologi terkini',
-      icon: '⚡',
+          ? 'From simple landing pages to complex enterprise applications, we build websites that work'
+          : 'Dari landing page sederhana hingga aplikasi enterprise kompleks, kami membangun website yang berfungsi',
     },
     {
-      title: locale === 'en' ? 'UI/UX Design' : 'Desain UI/UX',
+      icon: '📱',
+      title: locale === 'en' ? 'Mobile App Development' : 'Pengembangan Aplikasi Mobile',
       description:
         locale === 'en'
-          ? 'Stunning interfaces that users love, backed by data and psychology'
-          : 'Antarmuka memukau yang disukai pengguna, didukung data dan psikologi',
+          ? 'Native and cross-platform apps for Android, iOS, and smart watches'
+          : 'Aplikasi native dan cross-platform untuk Android, iOS, dan smart watch',
+    },
+    {
       icon: '🎨',
-    },
-    {
-      title: locale === 'en' ? '3D & Animation' : 'Animasi 3D',
+      title: locale === 'en' ? 'UI Design' : 'Desain UI',
       description:
         locale === 'en'
-          ? 'Immersive 3D experiences and smooth animations that captivate'
-          : 'Pengalaman 3D yang imersif dan animasi halus yang memikat',
-      icon: '✨',
+          ? 'Beautiful, intuitive interfaces that users love to interact with'
+          : 'Antarmuka yang indah dan intuitif yang disukai pengguna',
+    },
+    {
+      icon: '⚡',
+      title: locale === 'en' ? 'Performance Optimization' : 'Optimasi Performa',
+      description:
+        locale === 'en'
+          ? 'Lightning-fast websites that score 95+ on performance metrics'
+          : 'Website super cepat dengan skor 95+ pada metrik performa',
+    },
+    {
+      icon: '🔍',
+      title: locale === 'en' ? 'SEO' : 'SEO',
+      description:
+        locale === 'en'
+          ? 'Boost your visibility and rank higher in search engine results'
+          : 'Tingkatkan visibilitas dan peringkat Anda di hasil mesin pencari',
+    },
+    {
+      icon: '🔧',
+      title: locale === 'en' ? 'Maintenance' : 'Pemeliharaan',
+      description:
+        locale === 'en'
+          ? 'Keep your website running smoothly with ongoing support and updates'
+          : 'Jaga website Anda berjalan lancar dengan dukungan dan update berkelanjutan',
+    },
+    {
+      icon: '💡',
+      title: locale === 'en' ? 'Consulting & Strategy' : 'Konsultasi & Strategi',
+      description:
+        locale === 'en'
+          ? 'Expert guidance on technology choices and digital strategy'
+          : 'Panduan ahli tentang pilihan teknologi dan strategi digital',
     },
   ];
 
@@ -56,24 +88,25 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="flex"
             >
               <MagneticButton>
-                <div className="group glass p-8 rounded-2xl hover:border-white/30 transition-all duration-300 h-full">
+                <div className="group glass p-8 rounded-2xl hover:border-white/30 transition-all duration-300 h-full flex flex-col">
                   <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                     {service.icon}
                   </div>
                   <h3 className="text-2xl font-bold mb-4 group-hover:gradient-text transition-all duration-300">
                     {service.title}
                   </h3>
-                  <p className="text-gray-400 leading-relaxed">{service.description}</p>
+                  <p className="text-gray-400 leading-relaxed flex-grow">{service.description}</p>
                 </div>
               </MagneticButton>
             </motion.div>
