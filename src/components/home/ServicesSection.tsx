@@ -147,14 +147,14 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
               .map((tech, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 hover:scale-110 transition-transform duration-300 relative p-3 rounded-xl bg-gradient-to-br from-white/10 to-white/5 hover:from-white/15 hover:to-white/10"
+                  className="flex-shrink-0 hover:scale-110 transition-transform duration-300 w-24 h-24 flex items-center justify-center rounded-xl bg-white hover:bg-gray-50"
                   title={tech.name}
                 >
                   <Image
                     src={tech.image}
                     alt={tech.name}
-                    width={80}
-                    height={80}
+                    width={64}
+                    height={64}
                     className="object-contain"
                   />
                 </div>
