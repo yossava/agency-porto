@@ -98,7 +98,7 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
           <motion.div
             animate={{ x: [0, -2400] }}
             transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
-            className="flex gap-12 items-center"
+            className="flex gap-4 items-center"
           >
             {[
               { name: 'JavaScript', image: '/images/stacks/js.webp' },
