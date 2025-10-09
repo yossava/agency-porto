@@ -1,6 +1,7 @@
 'use client';
 
 import MagneticButton from '@/components/MagneticButton';
+import Card3D from '@/components/effects/Card3D';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -98,17 +99,26 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="flex"
             >
-              <MagneticButton>
-                <div className="group glass p-8 rounded-2xl hover:border-white/30 transition-all duration-300 h-full flex flex-col">
-                  <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                    {service.icon}
+              <Card3D>
+                <MagneticButton>
+                  <div className="group glass p-8 rounded-2xl hover:border-white/30 transition-all duration-300 h-full flex flex-col relative overflow-hidden">
+                    {/* Animated glow effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 blur-xl" />
+                    </div>
+
+                    <div className="relative z-10">
+                      <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                        {service.icon}
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 group-hover:gradient-text transition-all duration-300">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed flex-grow">{service.description}</p>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 group-hover:gradient-text transition-all duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed flex-grow">{service.description}</p>
-                </div>
-              </MagneticButton>
+                </MagneticButton>
+              </Card3D>
             </motion.div>
           ))}
         </div>

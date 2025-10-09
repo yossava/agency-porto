@@ -1,8 +1,10 @@
 import { setRequestLocale } from 'next-intl/server';
 import Hero from '@/components/home/Hero';
+import MetricsSection from '@/components/home/MetricsSection';
 import ServicesSection from '@/components/home/ServicesSection';
 import FeaturedWork from '@/components/home/FeaturedWork';
 import CTASection from '@/components/home/CTASection';
+import HomePageClient from '@/components/home/HomePageClient';
 import { getFeaturedProjects } from '@/lib/content';
 import { generatePageMetadata, generateOrganizationSchema } from '@/lib/seo';
 import type { Metadata } from 'next';
@@ -30,10 +32,13 @@ export default async function HomePage({ params: { locale } }: { params: { local
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
       />
-      <Hero locale={locale} />
-      <ServicesSection locale={locale} />
-      <FeaturedWork locale={locale} projects={featuredProjects} />
-      <CTASection locale={locale} />
+      <HomePageClient>
+        <Hero locale={locale} />
+        <MetricsSection locale={locale} />
+        <ServicesSection locale={locale} />
+        <FeaturedWork locale={locale} projects={featuredProjects} />
+        <CTASection locale={locale} />
+      </HomePageClient>
     </>
   );
 }

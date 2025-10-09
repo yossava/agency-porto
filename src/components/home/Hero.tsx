@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import MagneticButton from '@/components/MagneticButton';
+import AnimatedMesh from '@/components/effects/AnimatedMesh';
+import FloatingParticles from '@/components/effects/FloatingParticles';
+import TextScramble from '@/components/effects/TextScramble';
 
 const HeroScene = dynamic(() => import('./HeroScene'), {
   ssr: false,
@@ -46,6 +49,12 @@ export default function Hero({ locale }: HeroProps) {
       {/* 3D Background */}
       <HeroScene />
 
+      {/* Animated Mesh Gradient */}
+      <AnimatedMesh />
+
+      {/* Floating Particles */}
+      <FloatingParticles />
+
       {/* Content */}
       <motion.div
         className="relative z-10 max-w-6xl mx-auto px-6 text-center"
@@ -67,10 +76,10 @@ export default function Hero({ locale }: HeroProps) {
           className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
         >
           <span className="block mb-2">
-            {locale === 'en' ? 'Crafting Digital' : 'Menciptakan'}
+            <TextScramble text={locale === 'en' ? 'Crafting Digital' : 'Menciptakan'} />
           </span>
           <span className="block gradient-text">
-            {locale === 'en' ? 'Experiences' : 'Pengalaman Digital'}
+            <TextScramble text={locale === 'en' ? 'Experiences' : 'Pengalaman Digital'} />
           </span>
         </motion.h1>
 
