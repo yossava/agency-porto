@@ -1,8 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowLeft, Github, ExternalLink, Calendar, Tag } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Calendar, Tag } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useState } from 'react';
+import ImageLightbox from '@/components/ui/ImageLightbox';
 
 // Helper function to format date (duplicated to avoid importing server code)
 function formatDate(dateString: string, locale: 'en' | 'id' = 'en'): string {
@@ -22,7 +25,8 @@ interface Project {
   description: { en: string; id: string };
   tags: string[];
   gradient: string;
-  github?: string;
+  thumbnail?: string;
+  images?: string[];
   demo?: string;
   featured: boolean;
   date: string;
@@ -39,6 +43,32 @@ export default function ProjectDetailClient({
   relatedProjects,
   locale,
 }: ProjectDetailClientProps) {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const projectImages = project.images && project.images.length > 0
+    ? project.images
+    : project.thumbnail
+    ? [project.thumbnail]
+    : [];
+
+  const openLightbox = (index: number) => {
+    setCurrentImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
+  };
+
+  const previousImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + projectImages.length) % projectImages.length);
+  };
+
   return (
     <div className="min-h-screen pt-32 pb-20 px-6">
       <div className="max-w-4xl mx-auto">
@@ -89,8 +119,8 @@ export default function ProjectDetailClient({
           <p className="text-xl text-gray-300 mb-8">{project.description[locale]}</p>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap gap-4">
-            {project.demo && (
+          {project.demo && (
+            <div className="flex flex-wrap gap-4">
               <a
                 href={project.demo}
                 target="_blank"
@@ -100,31 +130,8 @@ export default function ProjectDetailClient({
                 <ExternalLink className="w-5 h-5" />
                 {locale === 'en' ? 'View Demo' : 'Lihat Demo'}
               </a>
-            )}
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 glass rounded-full font-semibold text-white border border-white/20 hover:border-white/40 transition-all inline-flex items-center gap-2"
-              >
-                <Github className="w-5 h-5" />
-                {locale === 'en' ? 'View Source' : 'Lihat Kode'}
-              </a>
-            )}
-          </div>
-
-          {/* Featured Image Placeholder */}
-          <div
-            className={`mt-8 h-96 rounded-3xl bg-gradient-to-br ${project.gradient} relative overflow-hidden`}
-          >
-            <div className="absolute inset-0 bg-black/20" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-white/20 text-9xl font-bold">
-                {project.title[locale].charAt(0)}
-              </div>
             </div>
-          </div>
+          )}
         </motion.div>
 
         {/* Project Details */}
@@ -226,13 +233,72 @@ export default function ProjectDetailClient({
           </div>
         </motion.div>
 
+        {/* Project Images Gallery */}
+        {projectImages.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mb-20"
+          >
+            <h2 className="text-3xl font-bold mb-8">
+              {locale === 'en' ? 'Project Gallery' : 'Galeri Proyek'}
+            </h2>
+            <div className={`grid gap-4 ${
+              projectImages.length === 1 ? 'grid-cols-1' :
+              projectImages.length === 2 ? 'grid-cols-2' :
+              projectImages.length === 3 ? 'grid-cols-3' :
+              projectImages.length === 4 ? 'grid-cols-2 md:grid-cols-2' :
+              'grid-cols-2 md:grid-cols-3'
+            }`}>
+              {projectImages.map((image, index) => (
+                <motion.button
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  onClick={() => openLightbox(index)}
+                  className="group relative h-64 rounded-2xl overflow-hidden glass border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer"
+                >
+                  <Image
+                    src={image}
+                    alt={`${project.title[locale]} - Image ${index + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/40 flex items-center justify-center">
+                        <svg
+                          className="w-6 h-6 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
         {/* Related Projects */}
         {relatedProjects.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-20"
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mb-20"
           >
             <h2 className="text-3xl font-bold mb-8">
               {locale === 'en' ? 'Related Projects' : 'Proyek Terkait'}
@@ -273,8 +339,8 @@ export default function ProjectDetailClient({
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-20 glass rounded-3xl p-12 text-center"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="glass rounded-3xl p-12 text-center"
         >
           <h2 className="text-3xl font-bold mb-4">
             {locale === 'en' ? 'Have a Project in Mind?' : 'Punya Proyek dalam Pikiran?'}
@@ -291,6 +357,19 @@ export default function ProjectDetailClient({
           </Link>
         </motion.div>
       </div>
+
+      {/* Image Lightbox */}
+      {projectImages.length > 0 && (
+        <ImageLightbox
+          images={projectImages}
+          currentIndex={currentImageIndex}
+          isOpen={lightboxOpen}
+          onClose={closeLightbox}
+          onNext={nextImage}
+          onPrevious={previousImage}
+          alt={project.title[locale]}
+        />
+      )}
     </div>
   );
 }

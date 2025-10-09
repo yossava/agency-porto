@@ -10,7 +10,8 @@
     "serve": "npx serve@latest out",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "migrate": "tsx scripts/migrate-to-mongodb.ts"
+    "migrate": "tsx scripts/migrate-to-mongodb.ts",
+    "add-images": "tsx scripts/add-project-images.ts"
   },
   "dependencies": {
     "@react-three/drei": "^9.105.0",

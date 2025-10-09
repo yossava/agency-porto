@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Project } from '@/lib/db/projects';
 
 interface WorkPageClientProps {
@@ -79,23 +80,33 @@ export default function WorkPageClient({ locale, projects }: WorkPageClientProps
                 href={`/${locale}/work/${project.id}`}
                 className="block group glass rounded-3xl overflow-hidden hover:border-white/30 transition-all duration-500"
               >
-                {/* Project Image Placeholder */}
+                {/* Project Image */}
                 <div
                   className={`relative h-64 bg-gradient-to-br ${project.gradient} overflow-hidden`}
                 >
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-white/20 text-8xl font-bold">
-                      {project.title[currentLocale].charAt(0)}
-                    </div>
-                  </div>
+                  {project.thumbnail ? (
+                    <>
+                      <Image
+                        src={project.thumbnail}
+                        alt={project.title[currentLocale]}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
+                    </>
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-white/20 text-8xl font-bold">
+                          {project.title[currentLocale].charAt(0)}
+                        </div>
+                      </div>
+                    </>
+                  )}
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {project.github && (
-                      <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300">
-                        <Github className="w-6 h-6 text-white" />
-                      </div>
-                    )}
                     {project.demo && (
                       <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300">
                         <ExternalLink className="w-6 h-6 text-white" />
