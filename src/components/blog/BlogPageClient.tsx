@@ -158,7 +158,7 @@ export default function BlogPageClient({ locale, posts }: BlogPageClientProps) {
               ? 'Subscribe to our newsletter to get the latest articles and insights delivered to your inbox.'
               : 'Berlangganan newsletter kami untuk mendapatkan artikel dan wawasan terbaru langsung ke inbox Anda.'}
           </p>
-          <form className="max-w-md mx-auto flex gap-4">
+          <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
             <input
               type="email"
               placeholder={
