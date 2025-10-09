@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import MagneticButton from '@/components/MagneticButton';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 interface ServicesSectionProps {
@@ -147,7 +147,7 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
               .map((tech, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 hover:scale-110 transition-transform duration-300 relative p-4 rounded-xl bg-white/5 hover:bg-white/10"
+                  className="flex-shrink-0 hover:scale-110 transition-transform duration-300 relative p-3 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5"
                   title={tech.name}
                 >
                   <Image
