@@ -26,7 +26,9 @@ export interface BlogPost {
   seo?: {
     metaTitle?: { id: string; en: string };
     metaDescription?: { id: string; en: string };
+    keywords?: string[];
     ogImage?: string;
+    ogType?: string;
   };
 }
 
@@ -55,7 +57,9 @@ interface BlogPostDocument {
   seo?: {
     metaTitle?: { id: string; en: string };
     metaDescription?: { id: string; en: string };
+    keywords?: string[];
     ogImage?: string;
+    ogType?: string;
   };
 }
 

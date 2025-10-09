@@ -19,6 +19,13 @@ export interface Project {
   date: string;
   createdAt?: string;
   updatedAt?: string;
+  seo?: {
+    metaTitle?: { id: string; en: string };
+    metaDescription?: { id: string; en: string };
+    keywords?: string[];
+    ogImage?: string;
+    ogType?: string;
+  };
 }
 
 interface ProjectDocument {
@@ -39,6 +46,13 @@ interface ProjectDocument {
   date: Date;
   createdAt?: Date;
   updatedAt?: Date;
+  seo?: {
+    metaTitle?: { id: string; en: string };
+    metaDescription?: { id: string; en: string };
+    keywords?: string[];
+    ogImage?: string;
+    ogType?: string;
+  };
 }
 
 /**

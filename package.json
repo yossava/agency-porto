@@ -11,7 +11,9 @@
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "migrate": "tsx scripts/migrate-to-mongodb.ts",
-    "add-images": "tsx scripts/add-project-images.ts"
+    "add-images": "tsx scripts/add-project-images.ts",
+    "add-seo": "tsx scripts/add-seo-fields.ts",
+    "seed-page-seo": "tsx scripts/seed-page-seo.ts"
   },
   "dependencies": {
     "@react-three/drei": "^9.105.0",
