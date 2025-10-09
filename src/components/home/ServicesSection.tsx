@@ -147,7 +147,7 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
               .map((tech, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 hover:scale-110 transition-transform duration-300 grayscale hover:grayscale-0 relative"
+                  className="flex-shrink-0 hover:scale-110 transition-transform duration-300 relative"
                   title={tech.name}
                 >
                   <Image
